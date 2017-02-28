@@ -13,5 +13,12 @@ perimeter({triangule,{SideA, SideB, SideC}}) ->
 area({triangule,{Base, Height}}) ->
     (Base * Height) / 2.
 
-bits(Integer) when is_integer(Integer), Integer >0 ->
-    io:format("inside bits");
+% http://www.wikihow.com/Convert-from-Decimal-to-Binary
+% http://learnyousomeerlang.com/recursion
+bits(Integer) -> bits(Integer,0).
+ 
+bits(1, Acc) -> Acc + 1;
+bits(Integer, Acc) -> 
+    Remainder = (Integer rem 2) + Acc,
+    Rest = Integer div 2,
+    bits(Rest,Remainder).
